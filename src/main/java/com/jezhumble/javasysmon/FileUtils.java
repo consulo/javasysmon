@@ -26,7 +26,8 @@ public class FileUtils {
      * @return An array of the ids of all processes running on the OS.
      */
     public String[] pidsFromProcFilesystem() {
-        return new File("/proc").list(FileUtils.PROCESS_DIRECTORY_FILTER);
+        String[] list = new File("/proc").list(FileUtils.PROCESS_DIRECTORY_FILTER);
+        return list == null ? new String[0] : list;
     }
 
     /**
@@ -55,7 +56,8 @@ public class FileUtils {
             inputStream = new FileInputStream(fileToRead);
             inputStream.read(contents);
             return contents;
-        } finally {
+        }
+        finally {
             if (inputStream != null) {
                 inputStream.close();
             }
@@ -81,7 +83,8 @@ public class FileUtils {
                 sw.write(line);
                 sw.write('\n');
             }
-        } finally {
+        }
+        finally {
             stream.close();
         }
         return sw.toString();
@@ -90,7 +93,7 @@ public class FileUtils {
     /**
      * Runs a regular expression on a file, and returns the first match.
      *
-     * @param pattern The regular expression to use.
+     * @param pattern  The regular expression to use.
      * @param filename The path of the filename to match against. Should be absolute.
      * @return The first match found. Null if no matches.
      */
@@ -103,7 +106,8 @@ public class FileUtils {
             if (firstMatch != null && firstMatch.length() > 0) {
                 return firstMatch;
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             // return null to indicate failure
         }
         return null;

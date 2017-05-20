@@ -1,9 +1,12 @@
 package com.jezhumble.javasysmon;
 
-import junit.framework.Assert;
+import org.junit.Assert;
+import org.junit.Ignore;
 import junit.framework.TestCase;
 
-public class ProcessTreeFunctionalTest extends TestCase {
+@Ignore
+public class ProcessTreeFunctionalTest extends TestCase
+{
     public void testShouldKillChildProcesses() {
         try {
             JavaSysMon monitor = new JavaSysMon();
